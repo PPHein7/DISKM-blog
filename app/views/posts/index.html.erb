@@ -1,0 +1,59 @@
+<style>
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+
+.highlight td {
+    background: green;
+}
+</style>
+
+<br>
+<h1 class="text-align:center"> DISKM </h1>
+<h2 class="text-align:center"> Full with High quality knowledges</h2>
+
+<table>
+<thead>
+<tr bgcolor="yellow">
+	<th>Title</th>
+	<th>Author</th>
+	<th>Date</th>
+	<th>Details</th>
+	<th>Vote</th>
+          <th>Delete</th>
+          <th>Update</th>
+</tr>
+<% @posts.each do |post| %>
+<tr bgcolor="#00FFFF">
+        <td><%= post.title %></td>
+        <td><%= post.author %></td>
+        <td><%= post.created_at.strftime('%b %d, %Y') %></td>
+        <td><%= link_to "READ MORE", post_path(post) %></td>
+        <td>
+	<input type="button" style="width:70px;padding:2px; border:3px solid green" value="Finished" onclick="myFunction(this);" />
+        </td>
+        <td><%= link_to "DELETE", post, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: post.title %>
+        </td>
+        <td><%= link_to "EDIT", edit_post_path(post) %> </td>
+
+</tr>
+<% end %>
+</table>
+
+<script type='text/javascript'>
+    myFunction = function(btn) {
+    $(btn).parent().parent().addClass('highlight');
+}
+</script>
